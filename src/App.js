@@ -11,24 +11,19 @@ function App() {
 
   useEffect(() => {
     fetchImages();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchImages = () => {
     var items = [];
-    console.log("images length ");
-
     for (var i = 0; i < 20; i++) {
       let number = getRandomArbitrary(0, 47);
 
       function getRandomArbitrary(min, max) {
         return Math.round(Math.random() * (max - min) + min);
       }
-
-      // console.log("RANDOM NUMBER", number)
-
       items.push(stockData[number]);
     }
-    console.log("ITEMS INSIDE FETCHIMAGES", items);
     setImage([...images, ...items]);
   };
 
@@ -39,21 +34,20 @@ function App() {
         <div className="mainboard__container">
           <Wrapper>
             <Container>
-            <InfiniteScroll
-            dataLength={images.length}
-            next={fetchImages}
-            hasMore={true}
-            loader={<h1>loading...</h1>}
-          >
-            <Container>
-              {images.map((image) => (
-                <UnsplashImage url={image.images.orig.url} key={image.id} />
-              ))}
-            </Container>
-          </InfiniteScroll>
+              <InfiniteScroll
+                dataLength={images.length}
+                next={fetchImages}
+                hasMore={true}
+                
+              >
+                <Container>
+                  {images.map((image, index) => (
+                    <UnsplashImage url={image.images.orig.url} key={index} />
+                  ))}
+                </Container>
+              </InfiniteScroll>
             </Container>
           </Wrapper>
-          
         </div>
       </div>
     </div>

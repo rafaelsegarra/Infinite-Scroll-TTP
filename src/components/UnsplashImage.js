@@ -7,9 +7,7 @@ export const UnsplashImage = ({ url }) => {
   return (
     <Wrapper>
     <Container>
-    
         <img src={url} alt="pin" />
-
     </Container>
 </Wrapper>
     )
